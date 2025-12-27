@@ -38,6 +38,78 @@
       padding:28px 16px;
     }
 
+    /* 🎧 Mini Radio (arriba) */
+    .radio-player{
+      position:fixed;
+      top:14px;
+      left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 14px;
+      background:rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:999px;
+      backdrop-filter: blur(8px);
+      z-index:9999;
+      box-shadow:0 12px 28px rgba(0,0,0,.35);
+    }
+
+    .radio-player button{
+      border:none;
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      color:#06101c;
+      font-weight:800;
+      border-radius:50%;
+      width:32px;
+      height:32px;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:transform .12s ease, filter .12s ease;
+    }
+    .radio-player button:hover{filter:brightness(1.05)}
+    .radio-player button:active{transform:translateY(1px)}
+
+    .radio-text{
+      font-size:12px;
+      color:var(--muted);
+      white-space:nowrap;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .onair{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.06);
+      font-size:11px;
+      color:rgba(234,242,255,.85);
+    }
+    .dot{
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:#ff3b3b;
+      box-shadow:0 0 14px rgba(255,59,59,.45);
+      opacity:.55;
+    }
+    .dot.live{
+      opacity:1;
+      animation:pulse 1.2s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.3)}
+    }
+
     .card{
       width:min(460px, 100%);
       background:var(--card);
@@ -157,6 +229,25 @@
 </head>
 
 <body>
+
+  <!-- 🎧 Mini Radio -->
+  <div class="radio-player">
+    <button id="radioBtn" aria-label="Reproducir/Pausar radio">▶️</button>
+
+    <span class="radio-text">
+      Radio Crystalys
+      <span class="onair">
+        <span id="dot" class="dot"></span>
+        ON AIR
+      </span>
+    </span>
+
+    <audio id="radioAudio" loop>
+      <source src="radio.mp3" type="audio/mpeg">
+      Tu navegador no soporta audio.
+    </audio>
+  </div>
+
   <main class="card">
     <div class="top">
       <div class="avatarWrap">
@@ -192,11 +283,33 @@
     <a class="btn secondary" href="support.html" target="_blank" rel="noopener">
       🌍 Apóyo Internacional
     </a>
-    
-
 
     <div class="divider"></div>
     <div class="foot">© 2025 Crystalys</div>
   </main>
+
+  <script>
+    const btn = document.getElementById("radioBtn");
+    const audio = document.getElementById("radioAudio");
+    const dot = document.getElementById("dot");
+
+    btn.addEventListener("click", async () => {
+      try{
+        if (audio.paused) {
+          await audio.play();
+          btn.textContent = "⏸️";
+          dot.classList.add("live");
+        } else {
+          audio.pause();
+          btn.textContent = "▶️";
+          dot.classList.remove("live");
+        }
+      }catch(e){
+        // Si el navegador bloquea la reproducción por alguna razón
+        alert("Toca de nuevo para reproducir el audio 🎧");
+      }
+    });
+  </script>
+
 </body>
 </html>
