@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CRYSTALYS | Gaming</title>
 
-  <!-- Fuente moderna -->
+  <!-- Fuente moderna (Inter) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -25,7 +25,7 @@
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: "Inter", Arial, sans-serif;
+      font-family:"Inter", Arial, sans-serif;
       background:
         radial-gradient(900px 500px at 50% -10%, rgba(42,168,255,.25), transparent 60%),
         radial-gradient(700px 400px at 10% 20%, rgba(0,212,255,.18), transparent 55%),
@@ -39,8 +39,8 @@
     }
 
     .card{
-      width:min(440px, 100%);
-      background: var(--card);
+      width:min(460px, 100%);
+      background:var(--card);
       border:1px solid var(--stroke);
       border-radius:24px;
       padding:28px 22px;
@@ -56,17 +56,26 @@
       align-items:center;
       gap:14px;
       margin-bottom:18px;
+      text-align:center;
     }
 
     .avatarWrap{
-      width:118px; height:118px;
+      width:124px; height:124px;
       border-radius:999px;
       padding:4px;
       background: conic-gradient(from 180deg, var(--accent), var(--accent2), var(--accent));
       box-shadow: 0 0 30px rgba(42,168,255,.35);
+      animation: glow 3.5s ease-in-out infinite;
     }
+
+    @keyframes glow{
+      0%,100%{ box-shadow:0 0 22px rgba(42,168,255,.28) }
+      50%{ box-shadow:0 0 36px rgba(0,212,255,.35) }
+    }
+
     .avatar{
-      width:100%; height:100%;
+      width:100%;
+      height:100%;
       border-radius:999px;
       object-fit:cover;
       border:2px solid rgba(0,0,0,.35);
@@ -85,8 +94,7 @@
       margin:0;
       color:var(--muted);
       font-size:14px;
-      line-height:1.4;
-      text-align:center;
+      line-height:1.45;
     }
 
     .pill{
@@ -110,7 +118,7 @@
       width:100%;
       text-decoration:none;
       color:#06101c;
-      font-weight:700;
+      font-weight:800;
       padding:14px 14px;
       margin:12px 0;
       border-radius:16px;
@@ -121,7 +129,7 @@
       transition: transform .12s ease, filter .12s ease;
       user-select:none;
     }
-    .btn:hover{filter:brightness(1.05)}
+    .btn:hover{filter:brightness(1.06)}
     .btn:active{transform: translateY(1px)}
 
     .btn.secondary{
@@ -129,10 +137,18 @@
       color: var(--text);
       border:1px solid var(--stroke);
       box-shadow:none;
+      font-weight:700;
+    }
+
+    .divider{
+      height:1px;
+      background: rgba(255,255,255,.08);
+      margin:16px 0 6px;
+      border-radius:999px;
     }
 
     .foot{
-      margin-top:16px;
+      margin-top:14px;
       text-align:center;
       font-size:12px;
       color:rgba(234,242,255,.55);
@@ -144,8 +160,8 @@
   <main class="card">
     <div class="top">
       <div class="avatarWrap">
-        <!-- ✅ sube tu foto al repo y usa: avatar.jpg -->
-        <img class="avatar" src="avatar.jpg" alt="Foto de Crystalys">
+        <!-- ✅ Tu archivo real en el repo: avatar.jpeg -->
+        <img class="avatar" src="avatar.jpeg" alt="Foto de Crystalys">
       </div>
 
       <h1>CRYSTALYS</h1>
@@ -153,11 +169,19 @@
       <div class="pill">⚡ Directos + clips • Comunidad</div>
     </div>
 
-    <!-- ✅ Cambia estos links por los tuyos reales -->
-    <a class="btn" href="https://www.tiktok.com/@TU_TIKTOK" target="_blank" rel="noopener">🎵 Sígueme en TikTok</a>
-    <a class="btn secondary" href="https://wa.me/51TUNUMERO" target="_blank" rel="noopener">💬 Comunidad WhatsApp</a>
-    <a class="btn secondary" href="mailto:tucorreo@gmail.com">📩 Contacto / Colab</a>
+    <a class="btn" href="https://www.tiktok.com/@TU_TIKTOK" target="_blank" rel="noopener">
+      🎵 Sígueme en TikTok
+    </a>
 
+    <a class="btn secondary" href="https://wa.me/51TUNUMERO" target="_blank" rel="noopener">
+      💬 Comunidad WhatsApp
+    </a>
+
+    <a class="btn secondary" href="mailto:tucorreo@gmail.com">
+      📩 Contacto / Colab
+    </a>
+
+    <div class="divider"></div>
     <div class="foot">© 2025 Crystalys</div>
   </main>
 </body>
