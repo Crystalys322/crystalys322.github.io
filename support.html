@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apóyo | Internacional</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg1:#050b14;
+    --bg2:#02040a;
+    --card: rgba(255,255,255,.06);
+    --stroke: rgba(255,255,255,.10);
+    --accent:#2aa8ff;
+    --accent2:#00d4ff;
+    --text:#eaf2ff;
+    --muted:rgba(234,242,255,.75);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter, Arial, sans-serif;
+    background:
+      radial-gradient(800px 400px at 50% -10%, rgba(42,168,255,.25), transparent 60%),
+      radial-gradient(700px 380px at 10% 20%, rgba(0,212,255,.16), transparent 55%),
+      linear-gradient(180deg, var(--bg1), var(--bg2));
+    color:var(--text);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:22px 16px;
+  }
+
+  .card{
+    width:min(460px, 100%);
+    background:var(--card);
+    border:1px solid var(--stroke);
+    border-radius:24px;
+    padding:24px 18px;
+    box-shadow:0 20px 60px rgba(0,0,0,.55);
+    backdrop-filter: blur(10px);
+  }
+
+  .title{
+    text-align:center;
+    margin-bottom:16px;
+  }
+  h1{
+    margin:0;
+    font-size:20px;
+    font-weight:800;
+  }
+  .sub{
+    margin:8px 0 0;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.45;
+  }
+
+  .method{
+    background:rgba(0,0,0,.22);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:18px;
+    padding:14px;
+    margin:12px 0;
+  }
+  .method h2{
+    margin:0 0 8px;
+    font-size:15px;
+    font-weight:800;
+  }
+  .desc{
+    margin:0 0 10px;
+    color:var(--muted);
+    font-size:12.5px;
+    line-height:1.4;
+  }
+
+  .row{
+    display:flex;
+    gap:10px;
+    align-items:stretch;
+    flex-wrap:wrap;
+  }
+
+  .code{
+    flex:1 1 220px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:12px;
+    padding:10px 12px;
+    font-size:13px;
+    word-break:break-all;
+  }
+
+  .copy{
+    flex:0 0 auto;
+    border:none;
+    border-radius:12px;
+    padding:10px 12px;
+    font-weight:800;
+    cursor:pointer;
+    color:#06101c;
+    background:linear-gradient(135deg, var(--accent), var(--accent2));
+    box-shadow:0 10px 26px rgba(42,168,255,.18);
+    transition:transform .12s ease, filter .12s ease;
+  }
+  .copy:hover{filter:brightness(1.05)}
+  .copy:active{transform:translateY(1px)}
+
+  .note{
+    margin-top:10px;
+    font-size:12px;
+    color:rgba(234,242,255,.62);
+  }
+
+  .divider{
+    height:1px;
+    background:rgba(255,255,255,.08);
+    margin:16px 0 10px;
+    border-radius:999px;
+  }
+
+  .back{
+    display:flex;
+    justify-content:center;
+    margin-top:10px;
+  }
+
+  .back a{
+    text-decoration:none;
+    color:var(--accent);
+    font-weight:700;
+    font-size:13.5px;
+  }
+
+  .toast{
+    position:fixed;
+    left:50%;
+    bottom:18px;
+    transform:translateX(-50%);
+    background:rgba(0,0,0,.65);
+    border:1px solid rgba(255,255,255,.12);
+    color:#fff;
+    padding:10px 14px;
+    border-radius:999px;
+    font-size:12px;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .18s ease, transform .18s ease;
+    backdrop-filter: blur(8px);
+  }
+  .toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(-4px);
+  }
+</style>
+</head>
+
+<body>
+  <main class="card">
+    <div class="title">
+      <h1>🌍 Apóyame desde el extranjero</h1>
+      <p class="sub">Gracias por apoyar mi contenido ❤️ Puedes usar PayPal o Binance Pay.</p>
+    </div>
+
+    <!-- PAYPAL -->
+    <section class="method">
+      <h2>💙 PayPal</h2>
+      <p class="desc">Copia el correo y envía tu apoyo por PayPal.</p>
+
+      <div class="row">
+        <div class="code" id="paypalText">johnnyvargasluque@gmail.com</div>
+        <button class="copy" onclick="copyText('paypalText')">Copiar</button>
+      </div>
+
+      <div class="note">Tip: si te sale la opción, puedes usar “Amigos y familiares”.</div>
+    </section>
+
+    <!-- BINANCE PAY -->
+    <section class="method">
+      <h2>🟡 Binance Pay</h2>
+      <p class="desc">Envía tu apoyo con Binance Pay usando este Pay ID.</p>
+
+      <div class="row">
+        <div class="code" id="binanceText">Binance Pay ID: 202030823</div>
+        <button class="copy" onclick="copyText('binanceText')">Copiar</button>
+      </div>
+
+      <div class="note">En Binance: Pay → Enviar → Pegar ID → Confirmar.</div>
+    </section>
+
+    <div class="divider"></div>
+
+    <div class="back">
+      <a href="index.html">⬅ Volver a mi página</a>
+    </div>
+  </main>
+
+  <div class="toast" id="toast">✅ Copiado</div>
+
+<script>
+  function showToast(msg){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'), 1200);
+  }
+
+  async function copyText(id){
+    const el = document.getElementById(id);
+    const text = el.innerText.trim();
+
+    try{
+      await navigator.clipboard.writeText(text);
+      showToast("✅ Copiado");
+    }catch(e){
+      // Fallback para algunos navegadores
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast("✅ Copiado");
+    }
+  }
+</script>
+
+</body>
+</html>
