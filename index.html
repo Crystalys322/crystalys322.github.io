@@ -201,8 +201,52 @@
       transition: transform .12s ease, filter .12s ease;
       user-select:none;
     }
-    .btn:hover{filter:brightness(1.06)}
-    .btn:active{transform: translateY(1px)}
+    /* ✨ Hover PRO para botones */
+    .btn{
+      position:relative;
+      overflow:hidden;
+      transform: translateZ(0);
+      will-change: transform;
+    }
+    
+    /* brillo suave que “pasa” por el botón */
+    .btn::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(600px 120px at 0% 50%, rgba(255,255,255,.22), transparent 55%);
+      opacity:0;
+      transition: opacity .25s ease, transform .35s ease;
+      transform: translateX(-35%);
+      pointer-events:none;
+    }
+    
+    .btn:hover{
+      filter: brightness(1.06);
+      transform: translateY(-2px);
+    }
+    
+    .btn:hover::before{
+      opacity:1;
+      transform: translateX(35%);
+    }
+    
+    .btn:active{
+      transform: translateY(0px) scale(.99);
+    }
+    
+    /* Hover PRO para botones secundarios */
+    .btn.secondary{
+      transition: transform .12s ease, filter .12s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+    
+    .btn.secondary:hover{
+      background: rgba(255,255,255,.10);
+      border-color: rgba(42,168,255,.35);
+      box-shadow: 0 12px 30px rgba(0,0,0,.28), 0 0 0 1px rgba(42,168,255,.18);
+      transform: translateY(-2px);
+    }
+
 
     .btn.secondary{
       background: rgba(255,255,255,.07);
