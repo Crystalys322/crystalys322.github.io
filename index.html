@@ -225,6 +225,55 @@
       font-size:12px;
       color:rgba(234,242,255,.55);
     }
+
+
+    /* ❄️ Nieve navideña (ligera y pro) */
+    .snow{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:9998; /* debajo del radio (9999), encima del fondo */
+      overflow:hidden;
+    }
+    
+    .snow::before,
+    .snow::after{
+      content:"";
+      position:absolute;
+      inset:-200px 0 0 0;
+      background-image:
+        radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,.95) 60%, transparent 61%),
+        radial-gradient(2px 2px at 120px 90px, rgba(255,255,255,.85) 60%, transparent 61%),
+        radial-gradient(1.5px 1.5px at 60px 150px, rgba(255,255,255,.75) 60%, transparent 61%),
+        radial-gradient(1.5px 1.5px at 180px 40px, rgba(255,255,255,.70) 60%, transparent 61%),
+        radial-gradient(1px 1px at 240px 120px, rgba(255,255,255,.65) 60%, transparent 61%),
+        radial-gradient(1px 1px at 320px 80px, rgba(255,255,255,.60) 60%, transparent 61%);
+      background-size: 360px 220px;
+      opacity:.55;
+      filter: blur(.2px);
+      transform: translateY(-120px);
+      animation: snowFall 14s linear infinite;
+    }
+    
+    .snow::after{
+      opacity:.35;
+      background-size: 520px 340px;
+      animation-duration: 22s;
+      animation-direction: normal;
+      transform: translateY(-180px);
+    }
+    
+    @keyframes snowFall{
+      from{ transform: translateY(-220px); }
+      to{ transform: translateY(calc(100vh + 220px)); }
+    }
+    
+    /* Si alguien tiene "reducir movimiento" activado */
+    @media (prefers-reduced-motion: reduce){
+      .snow::before, .snow::after{ animation:none; }
+    }
+
+    
   </style>
 </head>
 
@@ -248,6 +297,11 @@
     </audio>
   </div>
 
+  <!-- ❄️ Nieve -->
+  <div class="snow" aria-hidden="true"></div>
+
+
+  
   <main class="card">
     <div class="top">
       <div class="avatarWrap">
